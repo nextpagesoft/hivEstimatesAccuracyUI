@@ -155,13 +155,20 @@ Version: 0.7
 Hash: 20757f5c393ed0ecf96c9e8e6d8d514c
 
 Package: hivEstimatesAccuracy
-Source: source
+Source: github
 Version: 0.9.7
-Hash: 4de1c2eb21ee20ca8192b156d3f05e29
+Hash: 756aef3dd6802545ad1f8ea52a6847ff
 Requires: data.table, ggplot2, jomo, knitr, mice, mitools, quantreg,
     readxl, rmarkdown, shiny, shinycssloaders, shinydashboard, shinyjs,
     yaml
-SourcePath: ../hivEstimatesAccuracy
+GithubRepo: hivEstimatesAccuracy
+GithubUsername: nextpagesoft
+GithubRef: master
+GithubSha1: 3176145cc1092860f1ac2096e7852a76cd206240
+RemoteHost: https://api.github.com
+RemoteRepo: hivEstimatesAccuracy
+RemoteUsername: nextpagesoft
+RemoteSha: 3176145cc1092860f1ac2096e7852a76cd206240
 
 Package: hms
 Source: CRAN
