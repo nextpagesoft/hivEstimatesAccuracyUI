@@ -30,6 +30,7 @@ source(file.path(modulesPath, "outputs.R"))
 # App globals
 titleString <- "HIV Estimates Accuracy"
 versionString <- sprintf("v. %s", as.character(packageVersion("hivEstimatesAccuracy")))
+addResourcePath("www", system.file("shiny/www/", package = "hivEstimatesAccuracy"))
 
 # Define application user interface
 ui <- tagList(
@@ -53,7 +54,7 @@ ui <- tagList(
     ),
     dashboardBody(
       tags$head(
-        tags$link(rel = "stylesheet", type = "text/css", href = "./css/style.css")
+        tags$link(rel = "stylesheet", type = "text/css", href = "./www/css/style.css")
       ),
       tabItems(
         tabItem(tabName = "upload",      fluidRow(inputDataUploadUI("upload"))),
