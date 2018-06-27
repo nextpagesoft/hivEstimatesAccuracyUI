@@ -157,18 +157,18 @@ Hash: 20757f5c393ed0ecf96c9e8e6d8d514c
 Package: hivEstimatesAccuracy
 Source: github
 Version: 0.9.7
-Hash: 756aef3dd6802545ad1f8ea52a6847ff
+Hash: 90564c3993b2ba218f4af8c0af1f56bf
 Requires: data.table, ggplot2, jomo, knitr, mice, mitools, quantreg,
     readxl, rmarkdown, shiny, shinycssloaders, shinydashboard, shinyjs,
     yaml
 GithubRepo: hivEstimatesAccuracy
 GithubUsername: nextpagesoft
 GithubRef: master
-GithubSha1: 3176145cc1092860f1ac2096e7852a76cd206240
+GithubSha1: de4d94496098f7ce4d8d6e22ab0f9f47466d7e42
 RemoteHost: https://api.github.com
 RemoteRepo: hivEstimatesAccuracy
 RemoteUsername: nextpagesoft
-RemoteSha: 3176145cc1092860f1ac2096e7852a76cd206240
+RemoteSha: de4d94496098f7ce4d8d6e22ab0f9f47466d7e42
 
 Package: hms
 Source: CRAN
@@ -240,8 +240,8 @@ Requires: mime
 
 Package: mice
 Source: CRAN
-Version: 3.0.0
-Hash: 85d45fd41d77d3c7ad2c348126d93c51
+Version: 3.1.0
+Hash: 1fc43a8a26111bd8020a4e3827efdeba
 Requires: Rcpp, broom, dplyr, mitml, rlang
 
 Package: mime
