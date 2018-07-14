@@ -2,7 +2,7 @@
 options(shiny.maxRequestSize = 70 * 1024^2)
 
 # Determine if the app is run on the server or locally
-isServer <- Sys.info()[["nodename"]] == "ShinyServer"
+isServer <- tolower(Sys.info()[["nodename"]]) == "shinyserver"
 
 # Server specific code
 if (isServer) {
@@ -14,6 +14,7 @@ library(shiny)
 library(shinydashboard)
 library(shinycssloaders)
 library(ggplot2)
+library(data.table)
 
 # Load main library
 library(hivEstimatesAccuracy)
@@ -24,8 +25,8 @@ source(file.path(modulesPath, "inputDataUpload.R"))
 source(file.path(modulesPath, "dataSummary.R"))
 source(file.path(modulesPath, "dataAdjust.R"))
 source(file.path(modulesPath, "createReports.R"))
-source(file.path(modulesPath, "settings.R"))
 source(file.path(modulesPath, "outputs.R"))
+source(file.path(modulesPath, "manual.R"))
 
 # App globals
 titleString <- "HIV Estimates Accuracy"
@@ -48,7 +49,8 @@ ui <- tagList(
         menuItem("Input data summary", tabName = "summary",     icon = icon("bar-chart")),
         menuItem("Adjustments",        tabName = "adjustments", icon = icon("bolt")),
         menuItem("Reports",            tabName = "reports",     icon = icon("book")),
-        menuItem("Outputs",            tabName = "outputs",     icon = icon("download"))
+        menuItem("Outputs",            tabName = "outputs",     icon = icon("download")),
+        menuItem("Manual",             tabName = "manual",      icon = icon("book"))
       ),
       width = 180
     ),
@@ -61,7 +63,8 @@ ui <- tagList(
         tabItem(tabName = "summary",     fluidRow(dataSummaryUI("summary"))),
         tabItem(tabName = "adjustments", fluidRow(dataAdjustUI("adjustments"))),
         tabItem(tabName = "reports",     fluidRow(createReportsUI("reports"))),
-        tabItem(tabName = "outputs",     fluidRow(outputsUI("outputs")))
+        tabItem(tabName = "outputs",     fluidRow(outputsUI("outputs"))),
+        tabItem(tabName = "manual",      fluidRow(manualUI("manual")))
       )
     )
   )
@@ -78,6 +81,7 @@ server <- function(input, output, session)
   adjustedData <- callModule(dataAdjust, "adjustments", inputData)
   callModule(createReports, "reports", adjustedData)
   callModule(outputs, "outputs", adjustedData)
+  callModule(manual, "manual")
 
   if (!isServer) {
     session$onSessionEnded(stopApp)
