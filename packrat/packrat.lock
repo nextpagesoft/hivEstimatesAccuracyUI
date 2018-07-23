@@ -89,9 +89,15 @@ Hash: 67d0775189fd0041d95abca618c5c07e
 
 Package: broom
 Source: CRAN
-Version: 0.4.5
-Hash: 514abdac5bd99ae5a232784431e1c0f2
-Requires: dplyr, plyr, psych, reshape2, stringr, tidyr
+Version: 0.5.0
+Hash: 9f383b5f4632f82878222399b5fa7bbd
+Requires: backports, dplyr, purrr, reshape2, stringr, tibble, tidyr
+
+Package: callr
+Source: CRAN
+Version: 2.0.4
+Hash: ae3d74ab94396fc7f6b879f17fb71a12
+Requires: R6, processx
 
 Package: cellranger
 Source: CRAN
@@ -129,8 +135,8 @@ Package: devtools
 Source: CRAN
 Version: 1.13.6
 Hash: 9a137acbaeb61f440b1c1dedc1fbcaec
-Requires: digest, jsonlite, git2r, httr, memoise, rstudioapi, whisker,
-    withr
+Requires: digest, git2r, jsonlite, rstudioapi, whisker, withr, memoise,
+    httr
 
 Package: dichromat
 Source: CRAN
@@ -151,9 +157,14 @@ Requires: BH, R6, Rcpp, assertthat, bindrcpp, glue, magrittr,
 
 Package: evaluate
 Source: CRAN
-Version: 0.10.1
-Hash: 54d95f4ec6d0300100413ed0127d89ae
+Version: 0.11
+Hash: 2d90e734f5c12a3473f4be8ef3c15ebb
 Requires: stringr
+
+Package: fansi
+Source: CRAN
+Version: 0.2.3
+Hash: ea2d591618224c56c8d5befde9af822b
 
 Package: forcats
 Source: CRAN
@@ -175,8 +186,8 @@ Hash: 2b46fc65cb449ab97c7a38fdcf3ed12c
 
 Package: glue
 Source: CRAN
-Version: 1.2.0
-Hash: 381e42baedecc633c0e547a0c7ca9de7
+Version: 1.3.0
+Hash: 1fbde6dec830370be696eee8ef31c9e4
 
 Package: gtable
 Source: CRAN
@@ -197,18 +208,18 @@ Hash: 20757f5c393ed0ecf96c9e8e6d8d514c
 Package: hivEstimatesAccuracy
 Source: github
 Version: 0.9.7
-Hash: cb4d5de322340232f591bbed7603e699
-Requires: data.table, ggplot2, jomo, knitr, mice, mitools, quantreg,
-    readxl, rmarkdown, scales, shiny, shinycssloaders, shinydashboard,
-    shinyjs, yaml
+Hash: bb8b2bc16a39ae16a2fb036f31925b06
+Requires: callr, data.table, ggplot2, jomo, knitr, mice, mitools,
+    quantreg, readxl, rmarkdown, scales, shiny, shinycssloaders,
+    shinydashboard, shinyjs, yaml
 GithubRepo: hivEstimatesAccuracy
 GithubUsername: nextpagesoft
 GithubRef: master
-GithubSha1: d89588ef4c4322af7221cf15e881fc1ddee25d14
+GithubSha1: 40130361429894bc4a028c5b2ca933ae66e9d901
 RemoteHost: https://api.github.com
 RemoteRepo: hivEstimatesAccuracy
 RemoteUsername: nextpagesoft
-RemoteSha: d89588ef4c4322af7221cf15e881fc1ddee25d14
+RemoteSha: 40130361429894bc4a028c5b2ca933ae66e9d901
 
 Package: hms
 Source: CRAN
@@ -224,15 +235,15 @@ Requires: Rcpp, digest
 
 Package: httpuv
 Source: CRAN
-Version: 1.4.4.2
-Hash: f503a847b01e13a0160a5266238691ec
+Version: 1.4.5
+Hash: bdb7c0795749f67f9e3b5ca616b45648
 Requires: BH, Rcpp, later, promises
 
 Package: httr
 Source: CRAN
 Version: 1.3.1
 Hash: 2d32e01e53d532c812052e27a1021441
-Requires: R6, jsonlite, mime, curl, openssl
+Requires: R6, curl, jsonlite, mime, openssl
 
 Package: jomo
 Source: CRAN
@@ -351,9 +362,9 @@ Hash: 7f3100dc1e9ee36561dcd376a096df81
 
 Package: pillar
 Source: CRAN
-Version: 1.2.3
-Hash: d3b1c0a6cf4b64212509130845c22e09
-Requires: cli, crayon, rlang, utf8
+Version: 1.3.0
+Hash: 3e43f774fa6dfba877caca1aebbeaa6a
+Requires: cli, crayon, fansi, rlang, utf8
 
 Package: pkgconfig
 Source: CRAN
@@ -370,6 +381,17 @@ Source: CRAN
 Version: 1.8.4
 Hash: c55fb89c35c97156ff505fc90346110f
 Requires: Rcpp
+
+Package: praise
+Source: CRAN
+Version: 1.0.0
+Hash: 77da8f1df873a4b91e5c4a68fe2fb1b6
+
+Package: processx
+Source: CRAN
+Version: 3.1.0
+Hash: 3f3cd7b280ca226a53513cb41f5aab3d
+Requires: R6, assertthat, crayon, testthat
 
 Package: promises
 Source: CRAN
@@ -440,7 +462,7 @@ Package: rsconnect
 Source: CRAN
 Version: 0.8.8
 Hash: 65aaa7b253eda0ec1dcd1b1352c7b3ee
-Requires: digest, packrat, yaml, PKI, RCurl, RJSONIO, rstudioapi
+Requires: RJSONIO, digest, packrat, rstudioapi, yaml, PKI, RCurl
 
 Package: rstudioapi
 Source: CRAN
@@ -494,6 +516,12 @@ Source: CRAN
 Version: 1.3.1
 Hash: 9f417a1d899ed1f080942ab36998e8b5
 Requires: glue, magrittr, stringi
+
+Package: testthat
+Source: CRAN
+Version: 2.0.0
+Hash: 537114b476376c5773bf3c557f5bbd19
+Requires: R6, cli, crayon, digest, magrittr, praise, rlang, withr
 
 Package: tibble
 Source: CRAN
