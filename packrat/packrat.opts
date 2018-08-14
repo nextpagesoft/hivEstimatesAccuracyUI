@@ -12,6 +12,7 @@ ignored.packages:
 ignored.directories:
     data
     inst
+    utils
 quiet.package.installation: TRUE
 snapshot.recommended.packages: FALSE
 snapshot.fields:
