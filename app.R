@@ -6,15 +6,15 @@ isServer <- tolower(Sys.info()[["nodename"]]) == "shinyserver"
 
 # Server specific code
 if (isServer) {
-  # .libPaths(c("/home/daniel/R/devel/hivEstimatesAccuracy/packrat/lib/x86_64-pc-linux-gnu/3.4.3"))
+
 }
 
 # Load standard libraries
-library(shiny)
-library(shinydashboard)
-library(shinycssloaders)
-library(ggplot2)
-library(data.table)
+suppressPackageStartupMessages(library(shiny))
+suppressPackageStartupMessages(library(shinydashboard))
+suppressPackageStartupMessages(library(shinycssloaders))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(data.table))
 
 # Load main library
 library(hivEstimatesAccuracy)
@@ -30,7 +30,8 @@ source(file.path(modulesPath, "manual.R"))
 
 # App globals
 titleString <- "HIV Estimates Accuracy"
-versionString <- sprintf("v. %s", as.character(packageVersion("hivEstimatesAccuracy")))
+versionString <- sprintf("v. %s", as.character(packageDescription(pkg = "hivEstimatesAccuracy",
+                                                                  fields = "Version")))
 addResourcePath("www", system.file("shiny/www/", package = "hivEstimatesAccuracy"))
 
 # Define application user interface
