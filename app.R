@@ -6,7 +6,7 @@ isServer <- tolower(Sys.info()[["nodename"]]) == "shinyserver"
 
 # Server specific code
 if (isServer) {
-
+  # .libPaths(c("/home/daniel/R/devel/hivEstimatesAccuracy/packrat/lib/x86_64-pc-linux-gnu/3.4.3"))
 }
 
 # Load standard libraries
@@ -21,6 +21,7 @@ library(hivEstimatesAccuracy)
 
 # Load application modules
 modulesPath <- system.file("shiny/modules", package = "hivEstimatesAccuracy")
+wwwPath <- system.file("shiny/www", package = "hivEstimatesAccuracy")
 source(file.path(modulesPath, "inputDataUpload.R"))
 source(file.path(modulesPath, "dataSummary.R"))
 source(file.path(modulesPath, "dataAdjust.R"))
@@ -57,6 +58,8 @@ ui <- tagList(
     ),
     dashboardBody(
       tags$head(
+        tags$script(async = NA, src = "https://www.googletagmanager.com/gtag/js?id=UA-125099925-2"),
+        includeScript(path = file.path(wwwPath, "/js/google_analytics.js")),
         tags$link(rel = "stylesheet", type = "text/css", href = "./www/css/style.css")
       ),
       tabItems(
