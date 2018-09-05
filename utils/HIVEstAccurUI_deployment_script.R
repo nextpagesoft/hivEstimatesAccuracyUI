@@ -1,4 +1,4 @@
-currentVersion <- "0.9.11"
+currentVersion <- "master"
 
 file.copy("~/_REPOSITORIES/hivEstimatesAccuracy/inst/shiny/app.R",
           "~/_REPOSITORIES/hivEstimatesAccuracyUI/app.R",
