@@ -1,4 +1,4 @@
-currentVersion <- "0.9.12"
+branchName <- "0.10"
 
 file.copy("~/_REPOSITORIES/hivEstimatesAccuracy/inst/shiny/app.R",
           "~/_REPOSITORIES/hivEstimatesAccuracyUI/app.R",
@@ -9,7 +9,8 @@ file.copy("~/_REPOSITORIES/hivEstimatesAccuracy/packrat/packrat.lock",
 
 packrat::restore(overwrite.dirty = TRUE, prompt = FALSE)
 devtools::install_github("nextpagesoft/hivEstimatesAccuracy",
-                         ref = currentVersion)
+                         ref = branchName,
+                         dependencies = FALSE)
 
 rsconnect::deployApp(appDir = getwd(),
                      appName = "hivEstimatesAccuracyUI",

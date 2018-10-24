@@ -4,11 +4,6 @@ options(shiny.maxRequestSize = 70 * 1024^2)
 # Determine if the app is run on the server or locally
 isServer <- tolower(Sys.info()[["nodename"]]) == "shinyserver"
 
-# Server specific code
-if (isServer) {
-  # .libPaths(c("/home/daniel/R/devel/hivEstimatesAccuracy/packrat/lib/x86_64-pc-linux-gnu/3.4.3"))
-}
-
 # Load standard libraries
 suppressPackageStartupMessages(library(shiny))
 suppressPackageStartupMessages(library(shinydashboard))
@@ -31,8 +26,8 @@ source(file.path(modulesPath, "manual.R"))
 
 # App globals
 titleString <- "HIV Estimates Accuracy"
-versionString <- sprintf("v. %s", as.character(packageDescription(pkg = "hivEstimatesAccuracy",
-                                                                  fields = "Version")))
+version <- as.character(packageDescription(pkg = "hivEstimatesAccuracy",
+                                           fields = "Version"))
 addResourcePath("www", system.file("shiny/www/", package = "hivEstimatesAccuracy"))
 
 # Define application user interface
@@ -40,11 +35,17 @@ ui <- tagList(
   shinyjs::useShinyjs(),
 
   dashboardPage(
-    dashboardHeader(title = titleString,
-                    titleWidth = 600,
-                    .list = tagList(tags$li(tags$a(href = "#",
-                                                   span(versionString)),
-                                            class = "dropdown"))),
+    tags$header(
+      class = "main-header",
+      span(class = "logo", titleString),
+      tags$nav(
+        class = "navbar navbar-static-top",
+        div(class = "navbar-custom-menu",
+            div(sprintf("v. %s", version)),
+            div(tags$a(href = "./", target = "_blank", list(icon("external-link"), "Open new window")))
+        )
+      )
+    ),
     dashboardSidebar(
       sidebarMenu(
         menuItem("Input data upload",  tabName = "upload",      icon = icon("upload")),
@@ -60,7 +61,8 @@ ui <- tagList(
       tags$head(
         tags$script(async = NA, src = "https://www.googletagmanager.com/gtag/js?id=UA-125099925-2"),
         includeScript(path = file.path(wwwPath, "/js/google_analytics.js")),
-        tags$link(rel = "stylesheet", type = "text/css", href = "./www/css/style.css")
+        tags$link(rel = "stylesheet", type = "text/css", href = "./www/css/style.css"),
+        tags$title("HIV Estimates Accuracy")
       ),
       tabItems(
         tabItem(tabName = "upload",      fluidRow(inputDataUploadUI("upload"))),
@@ -77,19 +79,41 @@ ui <- tagList(
 # Define application server logic
 server <- function(input, output, session)
 {
-  appStatus <- reactiveValues(InputDataUploaded = FALSE,
-                              AttributeMappingValid = FALSE)
+  appStatus <- reactiveValues(
+    CreateTime = Sys.time(),
+    Version = version,
+    StateUploading = FALSE,
+    InputDataUploaded = FALSE,
+    OriginalData = NULL,
+    DefaultValues = list(),
+    OriginalDataAttrs = c(),
+    AttrMapping = list(),
+    AttrMappingStatus = NULL,
+    AttrMappingValid = FALSE,
+    InputDataTest = NULL,
+    InputDataTestStatus = NULL,
+    YearRange = NULL,
+    YearRangeApply = FALSE,
+    InputData = NULL,
+    AdjustedData = NULL,
+    AdjustmentSpecs = adjustmentSpecs,
+    MIAdjustmentName = "None",
+    RDAdjustmentName = "None",
+    RunLog = "",
+    IntermReport = "",
+    Report = ""
+  )
 
-  inputData <- callModule(inputDataUpload, "upload", appStatus)
-  callModule(dataSummary, "summary", appStatus, inputData)
-  adjustedData <- callModule(dataAdjust, "adjustments", inputData)
-  callModule(createReports, "reports", adjustedData)
-  callModule(outputs, "outputs", adjustedData)
-  callModule(manual, "manual")
+  callModule(inputDataUpload, "upload",      appStatus)
+  callModule(dataSummary,     "summary",     appStatus)
+  callModule(dataAdjust,      "adjustments", appStatus)
+  callModule(createReports,   "reports",     appStatus)
+  callModule(outputs,         "outputs",     appStatus)
+  callModule(manual,          "manual")
 
-  if (!isServer) {
-    session$onSessionEnded(stopApp)
-  }
+  # if (!isServer) {
+  #   session$onSessionEnded(stopApp)
+  # }
 }
 
 # Run application
