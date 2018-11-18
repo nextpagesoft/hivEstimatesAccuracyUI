@@ -2,7 +2,7 @@
 options(shiny.maxRequestSize = 70 * 1024^2)
 
 # Determine if the app is run on the server or locally
-isServer <- tolower(Sys.info()[["nodename"]]) == "shinyserver"
+isServer <- tolower(Sys.info()[["nodename"]]) == "shinyapps"
 
 # Load standard libraries
 suppressPackageStartupMessages(library(shiny))
@@ -42,7 +42,8 @@ ui <- tagList(
         class = "navbar navbar-static-top",
         div(class = "navbar-custom-menu",
             div(sprintf("v. %s", version)),
-            div(tags$a(href = "./", target = "_blank", list(icon("external-link"), "Open new window")))
+            div(tags$a(href = "./", target = "_blank", list(icon("external-link"), "Open new instance in separate tab"))),
+            actionLink("setSeed", "Set seed", icon = icon("random"))
         )
       )
     ),
@@ -82,6 +83,8 @@ server <- function(input, output, session)
   appStatus <- reactiveValues(
     CreateTime = Sys.time(),
     Version = version,
+    Seed = NULL,
+    FileName = "",
     StateUploading = FALSE,
     InputDataUploaded = FALSE,
     OriginalData = NULL,
@@ -111,9 +114,36 @@ server <- function(input, output, session)
   callModule(outputs,         "outputs",     appStatus)
   callModule(manual,          "manual")
 
-  # if (!isServer) {
-  #   session$onSessionEnded(stopApp)
-  # }
+  observeEvent(input[["setSeed"]], {
+    showModal(
+      modalDialog(
+        title = "Set seed",
+        textInput("seed", label = "Seed value", value = appStatus$Seed),
+        p("Give empty value or type 'default' to remove fixed seed"),
+        footer = tagList(
+          actionButton("seedDlgOk", "OK",
+                       style = "background-color: #69b023; color: white"),
+          modalButton("Cancel")
+        ),
+        size = "s"
+      )
+    )
+  })
+
+  observeEvent(input[["seedDlgOk"]], {
+    seed <- input$seed
+    if (seed == "" || tolower(seed) == "default") {
+      appStatus$Seed <- NULL
+    } else {
+      appStatus$Seed <- seed
+    }
+    removeModal()
+  })
+
+
+  if (!isServer) {
+    session$onSessionEnded(stopApp)
+  }
 }
 
 # Run application

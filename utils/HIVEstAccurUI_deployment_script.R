@@ -1,4 +1,4 @@
-branchName <- "0.10"
+branchName <- "0.11"
 
 file.copy("~/_REPOSITORIES/hivEstimatesAccuracy/inst/shiny/app.R",
           "~/_REPOSITORIES/hivEstimatesAccuracyUI/app.R",

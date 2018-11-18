@@ -1,2 +1,2 @@
 # hivEstimatesAccuracyUI
-User interface to the hivEstimatesAccuracy R package
+User interface for the hivEstimatesAccuracy R package
