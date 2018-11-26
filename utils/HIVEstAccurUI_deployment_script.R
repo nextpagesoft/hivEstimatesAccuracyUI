@@ -1,11 +1,17 @@
 branchName <- "1.0"
 
-file.copy("~/_REPOSITORIES/hivEstimatesAccuracy/inst/shiny/app.R",
-          "~/_REPOSITORIES/hivEstimatesAccuracyUI/app.R",
+file.copy("../hivEstimatesAccuracy/inst/shiny/app.R",
+          "app.R",
           overwrite = TRUE)
-file.copy("~/_REPOSITORIES/hivEstimatesAccuracy/packrat/packrat.lock",
-          "~/_REPOSITORIES/hivEstimatesAccuracyUI/packrat/packrat.lock",
+file.copy("../hivEstimatesAccuracy/packrat/packrat.lock",
+          "packrat/packrat.lock",
           overwrite = TRUE)
+
+appFile <- file("app.R")
+appLines <- readLines(appFile)
+appLines[1] <- "isLocalRun <- FALSE"
+writeLines(appLines, appFile)
+close(appFile)
 
 packrat::restore(overwrite.dirty = TRUE, prompt = FALSE)
 devtools::install_github("nextpagesoft/hivEstimatesAccuracy",
