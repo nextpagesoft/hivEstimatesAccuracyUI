@@ -24,11 +24,12 @@ source(file.path(modulesPath, "createReports.R"))
 source(file.path(modulesPath, "outputs.R"))
 source(file.path(modulesPath, "manual.R"))
 
+addResourcePath("www", wwwPath)
+
 # App globals
 titleString <- "HIV Estimates Accuracy"
 version <- as.character(packageDescription(pkg = "hivEstimatesAccuracy",
                                            fields = "Version"))
-addResourcePath("www", system.file("shiny/www/", package = "hivEstimatesAccuracy"))
 
 # Define application user interface
 ui <- tagList(
@@ -95,8 +96,10 @@ server <- function(input, output, session)
     AttrMappingValid = FALSE,
     InputDataTest = NULL,
     InputDataTestStatus = NULL,
-    YearRange = NULL,
-    YearRangeApply = FALSE,
+    DiagYearRange = NULL,
+    DiagYearRangeApply = FALSE,
+    NotifQuarterRange = NULL,
+    NotifQuarterRangeApply = NULL,
     InputData = NULL,
     AdjustedData = NULL,
     AdjustmentSpecs = adjustmentSpecs,
@@ -141,9 +144,9 @@ server <- function(input, output, session)
   })
 
 
-  if (!isServer) {
-    session$onSessionEnded(stopApp)
-  }
+  # if (!isServer) {
+  #   session$onSessionEnded(stopApp)
+  # }
 }
 
 # Run application
