@@ -17,7 +17,8 @@ packrat::restore(overwrite.dirty = TRUE, prompt = FALSE)
 
 devtools::install_github("nextpagesoft/hivEstimatesAccuracy",
                          ref = branchName,
-                         dependencies = FALSE)
+                         dependencies = FALSE,
+                         force = TRUE)
 
 rsconnect::deployApp(appDir = getwd(),
                      appName = "hivEstimatesAccuracyUI",
