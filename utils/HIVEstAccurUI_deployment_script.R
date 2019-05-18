@@ -14,6 +14,7 @@ writeLines(appLines, appFile)
 close(appFile)
 
 packrat::restore(overwrite.dirty = TRUE, prompt = FALSE)
+
 devtools::install_github("nextpagesoft/hivEstimatesAccuracy",
                          ref = branchName,
                          dependencies = FALSE)
