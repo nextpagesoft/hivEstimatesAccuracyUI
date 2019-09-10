@@ -15,10 +15,13 @@ close(appFile)
 
 packrat::restore(overwrite.dirty = TRUE, prompt = FALSE)
 
+options(download.file.method = "libcurl")
 devtools::install_github("nextpagesoft/hivEstimatesAccuracy",
                          ref = branchName,
                          dependencies = FALSE,
                          force = TRUE)
+
+rsconnect::showLogs(streaming = TRUE)
 
 rsconnect::deployApp(appDir = getwd(),
                      appName = "hivEstimatesAccuracyUI",
