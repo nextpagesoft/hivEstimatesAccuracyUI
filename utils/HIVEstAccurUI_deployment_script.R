@@ -28,4 +28,4 @@ rsconnect::deployApp(appDir = getwd(),
                      appFiles = c("app.R"),
                      contentCategory = "application",
                      forceUpdate = TRUE,
-                     account = "ecdc")
+                     account = "nextpage")
