@@ -4,11 +4,9 @@ print.banner.on.startup: auto
 vcs.ignore.lib: TRUE
 vcs.ignore.src: TRUE
 external.packages:
-    rsconnect
-    devtools
-local.repos: 
+local.repos:
 load.external.packages.on.startup: FALSE
-ignored.packages: 
+ignored.packages:
 ignored.directories:
     data
     inst
