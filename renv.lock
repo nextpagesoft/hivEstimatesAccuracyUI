@@ -79,13 +79,6 @@
       "Repository": "CRAN",
       "Hash": "c66578fcae4cd6f42bddffee8a67f19b"
     },
-    "RcppEigen": {
-      "Package": "RcppEigen",
-      "Version": "0.3.3.9.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ddfa72a87fdf4c80466a20818be91d00"
-    },
     "SparseM": {
       "Package": "SparseM",
       "Version": "1.78",
